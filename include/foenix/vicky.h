@@ -205,7 +205,8 @@ typedef struct sprite {
 // where n is 0-63.
 #define Sprite ((sprite_t *)0xd900)
 
-enum sprite_size { Sprite_32x32, Sprite_24x24, Sprite_16x16, Sprite_8x8
+enum sprite_size {
+  Sprite_32x32, Sprite_24x24, Sprite_16x16, Sprite_8x8
 };
 
 
