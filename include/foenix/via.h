@@ -1,8 +1,8 @@
 // Foenix C256 Junior Versatile Interface Adapter (6522 VIA)
 //
 
-#ifndef __FOENIX_JR_TINY_VICKY_H__
-#define __FOENIX_JR_TINY_VICKY_H__
+#ifndef __FOENIX_JR_VIA_H__
+#define __FOENIX_JR_VIA_H__
 
 #include <stdint.h>
 
@@ -69,7 +69,7 @@ struct via {
     uint8_t ier;
   };
   uint8_t a_;     // same as 'a', but no handshake
-} via_t;
+};
 
 enum via_shift_register_control {
   ShiftRegisterDisabled,
@@ -95,4 +95,4 @@ enum via_control {
   HandshakeOutput, PulseOutput, LowOutput, HighOutput
 };
 
-#endif // __FOENIX_JR_TINY_VICKY_H__
+#endif // __FOENIX_JR_VIA_H__
