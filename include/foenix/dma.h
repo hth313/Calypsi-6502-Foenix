@@ -24,9 +24,9 @@ struct dma {
     };
   };
   union {
-    uint8_t     data_to_write;     // write only
+    uint8_t     data_to_write;  // write only
     union {
-      uint8_t   status;            // read only
+      uint8_t   status;         // read only
       struct {
         uint8_t                : 7;
         uint8_t in_progress    : 1;
@@ -36,17 +36,16 @@ struct dma {
   uint8_t       reserved_0;
   uint8_t       reserved_1;
 
-  // source addy
   uint32_t      source_addy;
   uint32_t      dest_addy;
   union {
-    uint32_t    size_1d;    // 1D mode
+    uint32_t    size_1d;        // 1D mode
     struct {
-      uint16_t  size_x;     // 2D mode
+      uint16_t  size_x;         // 2D mode
       uint16_t  size_y;
     };
   };
-  uint16_t      stride_x;     // stride in 2D mode
+  uint16_t      stride_x;       // stride in 2D mode
   uint16_t      stride_y;
 
   uint8_t       reserved_5;
