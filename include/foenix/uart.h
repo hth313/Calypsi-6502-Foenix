@@ -1,4 +1,4 @@
-// Foenix C256 Junior UART
+// F256 Junior UART
 //
 
 #ifndef __FOENIX_JR_UART_H__

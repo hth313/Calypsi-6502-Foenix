@@ -1,4 +1,4 @@
-// Foenix C256 Junior System control registers
+// F256 Junior System control registers
 //
 // These controls LEDs, buzzer, LFSR (pseudo random number) and holds
 // identity values about the machine.

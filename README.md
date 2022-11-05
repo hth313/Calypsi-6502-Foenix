@@ -1,9 +1,9 @@
-Calypsi board support for C256 Foenix Junior
-============================================
+Calypsi board support for Foenix 256 Junior
+===========================================
 
 This project contains a library and linker control files to make
 it easy to get started on using the
-[Calypsi C compiler](https://www.calypsi.cc/) for the C256 Foenix Junior.
+[Calypsi C compiler](https://www.calypsi.cc/) for the F256 Junior.
 
 Usage
 -----
@@ -11,7 +11,7 @@ Usage
 This module is currently intended to be included as a Git submodule
 in your own project. You can see examples of this in existing projects
 such as
-[Hello World for C256U](https://github.com/hth313/Calypsi-6502-hello-world)
+[Hello World for F256 Jr.](https://github.com/hth313/Calypsi-6502-hello-world)
 where this project is included under the `module` folder.
 
 To attach this project to you project while standing in the root folder
@@ -70,7 +70,7 @@ things to pay attention to:
 Startup module
 --------------
 
-This project contains a startup module for C256 Foenix Junior that is
+This project contains a startup module for F256 Foenix Junior that is
 suitable for starting an application in its envionment. The default
 startup module provided by the Calypsi tools is aimed at running from
 a flash.

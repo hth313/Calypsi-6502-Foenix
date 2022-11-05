@@ -1,4 +1,4 @@
-// Foenix C256 Junior interrupt controller
+// F256 Junior interrupt controller
 //
 
 #ifndef __FOENIX_JR_INTERRUPT_H__

@@ -1,4 +1,4 @@
-// Foenix C256 Junior Tiny Vicky
+// F256 Junior Tiny Vicky
 //
 
 #ifndef __FOENIX_JR_TINY_VICKY_H__
