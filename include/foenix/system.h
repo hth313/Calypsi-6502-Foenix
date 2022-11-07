@@ -11,7 +11,12 @@
 typedef struct SystemControl {
   union {
     struct {
-      uint8_t power_led    : 1;
+      uint8_t                    : 6; // read
+      uint8_t SD_inserted        : 1;
+      uint8_t SD_write_protected : 1;
+    };
+    struct {
+      uint8_t power_led    : 1;       // write
       uint8_t sd_led       : 1;
       uint8_t status0_led  : 1;
       uint8_t status1_led  : 1;
