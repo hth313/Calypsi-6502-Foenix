@@ -6,9 +6,9 @@
 
 #include <stdint.h>
 
-typedef struct vicky vicky_t;
+typedef struct _Vicky Vicky_t;
 
-#define Vicky (* (volatile vicky_t*) 0xd000)
+#define Vicky (* (volatile Vicky_t*) 0xd000)
 
 typedef struct color {
   uint8_t blue;
@@ -28,7 +28,7 @@ typedef struct vram {
 //
 // ----------------------------------------------------------------------
 
-struct vicky {
+struct _Vicky {
   union {                                 // Master control
     struct {
       uint8_t text_enable         : 1;
@@ -95,21 +95,21 @@ struct vicky {
 };
 
 // Resolution enums
-enum vicky_text_resolution {
+enum VickyTextResolution {
   Text_640x480_60Hz, Text_640x480_70Hz
 };
 
-enum vicky_graphics_resolution {
+enum VickyGraphicsResolution {
   Graphics_320x240_60Hz, Graphics_320x200_70Hz
 };
 
 // Layers
-enum vicky_layer {
+enum VickyLayer {
   Layer_Bitmap0, Layer_Bitmap1,
   Layer_Timemap0, Layer_Timemap1, Layer_Timemap2
 };
 
-enum vicky_cursor_flash_rate {
+enum VickyCursorFlashRate {
   CursorFlash_1s, CursorFlash_0_5s, CursorFlash_0_25s, CursorFlash_0_20s
 };
 

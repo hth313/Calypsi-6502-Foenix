@@ -8,7 +8,7 @@
 
 #include <stdint.h>
 
-typedef struct SystemControl {
+typedef struct _SystemControl {
   union {
     struct {
       uint8_t                    : 6; // read
