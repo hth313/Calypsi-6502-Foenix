@@ -1,6 +1,3 @@
-// F256 Junior Versatile Interface Adapter (6522 VIA)
-//
-
 #ifndef __FOENIX_JR_RTC_H__
 #define __FOENIX_JR_RTC_H__
 
