@@ -43,10 +43,6 @@ struct uart {
         uint8_t fifos_enabled      : 2;     // ????
       };
       uint8_t isr;       // interrupt status (read)
-      union {          // when DLAB=1
-        uint8_t prescaler;
-        uint8_t psd;
-      };
     };
     union {
       struct {
@@ -60,42 +56,40 @@ struct uart {
       uint8_t fcr;       // FIFO control (write)
     };
   };
-  union {
-    struct {
-      uint8_t word_length          : 2;
-      uint8_t stop_bits            : 1;
-      uint8_t parity_enable        : 1;
-      uint8_t even_parity          : 1;
-      uint8_t set_parity           : 1;
-      uint8_t set_break            : 1;
-      uint8_t divisor_latch_enable : 1;
-    };
-    uint8_t lcr;         // line control
-  };
-  union {
-    struct {
-      uint8_t dtr                  : 1;
-      uint8_t rts                  : 1;
-      uint8_t op1                  : 1;
-      uint8_t op2                  : 1;
-      uint8_t loop_back            : 1;
-      uint8_t                      : 3;
-    };
-    uint8_t mcr;         // modem control
-  };
-  union {
-    struct {
-      uint8_t receive_data_ready   : 1;
-      uint8_t overrun_error        : 1;
-      uint8_t parity_error         : 1;
-      uint8_t framing_error        : 1;
-      uint8_t break_interrupt      : 1;
-      uint8_t transmit_hold_empty  : 1;
-      uint8_t transmit_empty       : 1;
-      uint8_t fifo_data_error      : 1;
-    };
-    uint8_t lsr;         // line status
-  };
+
+  uint8_t lcr;         // line control
+#define WORD_LENGTH_5        0x00
+#define WORD_LENGTH_6        0x01
+#define WORD_LENGTH_7        0x02
+#define WORD_LENGTH_8        0x03
+#define STOP_BITS_1          0x00
+#define STOP_BITS_2          0x04
+#define NO_PARITY            0x00
+#define ODD_PARITY           0x08
+#define EVEN_PARITY          0x18
+#define FORCE_PARITY_1       0x28
+#define FORCE_PARITY_0       0x38
+#define SET_BREAK            0x40
+#define DIVISOR_LATCH_ENABLE 0x80
+
+  uint8_t mcr;         // modem control
+#define MCR_DTR              0x01
+#define MCR_RTS              0x02
+#define MCR_OUT1             0x04
+#define MCR_OUT2             0x08
+#define MCR_LOOP_BACK        0x10
+#define MCR_AFE              0x20
+
+  uint8_t lsr;         // line status
+#define receive_data_ready   0x01
+#define overrun_error        0x02
+#define parity_error         0x04
+#define framing_error        0x08
+#define break_interrupt      0x10
+#define transmit_hold_empty  0x20
+#define transmit_empty       0x40
+#define fifo_data_error      0x80
+
   uint8_t msr;         // modem status
   uint8_t spr;         // scratch pad
 };
