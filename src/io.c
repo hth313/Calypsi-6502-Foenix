@@ -1,8 +1,8 @@
-#include "api.h"
+#include <tinycore/api.h>
 #include <stdbool.h>
 #include <string.h>
 #include <calypsi/stubs.h>
-#include "intrinsics6502.h"
+#include <calypsi/intrinsics6502.h>
 
 #define args (*(__zpage struct call_args*)0xf0)
 #define EVENT(member)  (size_t) (&((struct events*) 0)->member)
