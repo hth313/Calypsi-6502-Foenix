@@ -4,13 +4,6 @@
 #include <calypsi/stubs.h>
 #include <calypsi/intrinsics6502.h>
 
-#define args (*(__zpage struct call_args*)0xf0)
-#define EVENT(member)  (size_t) (&((struct events*) 0)->member)
-
-extern struct event_t event;
-extern bool _kern_NextEvent(void);
-extern bool _kern_Open(void);
-
 const char *
 _path_without_drive(const char *path, char *drive) {
   char drive_char = path[0];
@@ -56,31 +49,4 @@ _Stub_open(const char *fname, int mode, ...) {
       return -1;
     }
   }
-}
-
-extern bool kern(void);
-
-int test() {
-  if (__tinycore_call_failed(kern())) {
-    return 2;
-  } else {
-    return 4;
-  }
-}
-
-// 3. TinyCore call
-extern _Bool TinyCoreGetTime(void);
-
-int bcd_time() {
-  if (__tinycore_call_failed(TinyCoreGetTime())) {
-    return -1;
-  } else {
-    // Handle the time return
-    return 0;
-  }
-}
-
-// We can also get it as a value.
-_Bool bcd_time_call() {
-  return __tinycore_call_failed(TinyCoreGetTime());
 }
