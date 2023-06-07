@@ -32,13 +32,13 @@ _Stub_open(const char *fname, int mode, ...) {
     mode = 1;
   }
   args.file.open.mode = mode;
-  if (__tinycore_call_failed(_kern_Open())) {
+  if (__tinycore_call_failed(_TinyCoreCall(File.Open)())) {
     return -1;
   }
 
   for(;;) {
     event.type = 0;
-    _kern_NextEvent();
+    _TinyCoreCall(NextEvent)();
     if (event.type == EVENT(file.OPENED)) {
       return ret + 3;
     }

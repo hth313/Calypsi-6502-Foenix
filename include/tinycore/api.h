@@ -8,10 +8,11 @@
  *  JSR to one of the velctors below:
  */
 
-#ifndef kernel_api_h
-#define kernel_api_h
+#ifndef __TINYCORE_API_H__
+#define __TINYCORE_API_H__
 
 #include <stdint.h>
+#include <stddef.h>
 
 struct call {  // Mount at $ff00
 
@@ -402,4 +403,12 @@ struct event_t {
         struct event_dir_t    directory;
     };
 };
-#endif
+
+#define args (*(__zpage struct call_args*)0xf0)
+#define EVENT(member)  (size_t) (&((struct events*) 0)->member)
+extern struct event_t event;
+
+typedef _Bool (*_TinyCoreCallType)(void);
+#define _TinyCoreCall(entry) ((_TinyCoreCallType) (&((struct call*) 0xff00)->entry))
+
+#endif // __TINYCORE_API_H__
