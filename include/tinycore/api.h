@@ -406,7 +406,7 @@ struct event_t {
 
 #define args (*(__zpage struct call_args*)0xf0)
 #define EVENT(member)  (size_t) (&((struct events*) 0)->member)
-extern struct event_t event;
+extern __zpage struct event_t event;
 
 typedef _Bool (*_TinyCoreCallType)(void);
 #define _TinyCoreCall(entry) ((_TinyCoreCallType) (&((struct call*) 0xff00)->entry))
