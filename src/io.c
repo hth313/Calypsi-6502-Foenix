@@ -40,7 +40,7 @@ _Stub_open(const char *fname, int mode, ...) {
     event.type = 0;
     _TinyCoreCall(NextEvent)();
     if (event.type == EVENT(file.OPENED)) {
-      return ret + 3;
+      return ret;
     }
     if (event.type == EVENT(file.NOT_FOUND)) {
       return -1;

@@ -3,7 +3,7 @@
 #include <calypsi/stubs.h>
 
 int _Stub_close(int fd) {
-  args.file.close.stream = fd - 3;
+  args.file.close.stream = fd;
   int result = - __tinycore_call_failed(_TinyCoreCall(File.Close)());
   do {
     event.type = 0;
