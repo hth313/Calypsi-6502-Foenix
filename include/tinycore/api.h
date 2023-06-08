@@ -178,7 +178,7 @@ struct fs_delete_t {
 };
 
 struct fs_seek_t {
-    uint8_t  streak;
+    uint8_t  stream;
     uint8_t  cookie;
     uint32_t position;
 };
