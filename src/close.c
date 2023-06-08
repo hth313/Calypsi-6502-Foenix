@@ -1,5 +1,6 @@
 #include <tinycore/api.h>
 #include "calypsi/intrinsics6502.h"
+#include <calypsi/stubs.h>
 
 int _Stub_close(int fd) {
   args.file.close.stream = fd - 3;
