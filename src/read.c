@@ -20,36 +20,35 @@ size_t _Stub_read(int fd, void *buf, size_t count) {
   if (fd == 0) {
     *(char*)buf = getin();
     return 1;
-  } else {
+  }
 
-    // Limit number of bytes to request
-    if (count > 256) {
-      count = 256;
-    }
+  // Limit number of bytes to request
+  if (count > 256) {
+    count = 256;
+  }
 
-    args.file.read.stream = fd;
-    args.file.read.buflen = count;
+  args.file.read.stream = fd;
+  args.file.read.buflen = count;
 
-    if (__tinycore_call_failed(_TinyCoreCall(File.Read)())) {
-      __set_errno(EIO);
-      return 0;
-    }
+  if (__tinycore_call_failed(_TinyCoreCall(File.Read)())) {
+    __set_errno(EIO);
+    return 0;
+  }
 
-    while (1) {
-      event.type = 0;
-      _TinyCoreCall(NextEvent)();
-      switch (event.type) {
-      case EVENT(file.DATA):
+  while (1) {
+    event.type = 0;
+    _TinyCoreCall(NextEvent)();
+    switch (event.type) {
+    case EVENT(file.DATA):
 	args.common.buf = buf;
-        args.common.buflen = event.file.data.delivered;
-        _TinyCoreCall(ReadData)();
+      args.common.buflen = event.file.data.delivered;
+      _TinyCoreCall(ReadData)();
 	return event.file.data.delivered;
-      case EVENT(file.EOF):
+    case EVENT(file.EOF):
 	return 0;
-      case EVENT(file.ERROR):
+    case EVENT(file.ERROR):
 	__set_errno(EIO);
 	return 0;
-      }
     }
   }
 }
