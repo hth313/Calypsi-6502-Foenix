@@ -411,4 +411,6 @@ extern __zpage struct event_t event;
 typedef _Bool (*_TinyCoreCallType)(void);
 #define _TinyCoreCall(entry) ((_TinyCoreCallType) (&((struct call*) 0xff00)->entry))
 
+const char *__path_without_drive(const char *path, char *drive);
+
 #endif // __TINYCORE_API_H__
