@@ -29,6 +29,7 @@ args:	      .equ    0xf0
 
               .section code, noreorder
               .pubweak __program_start
+              .pubweak __program_root_section
 __program_start:
 __program_root_section:
 	      tsx		    ; save original stack pointer for later exit()
