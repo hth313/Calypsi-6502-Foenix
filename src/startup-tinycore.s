@@ -10,7 +10,7 @@
               .section heap
               .section data_init_table
 
-              .extern main, exit, event
+              .extern main, exit, event, __saved_sp
               .extern _Zp, _Vsp, _Vfp
 
 	      ;; TinyCore argument area
@@ -121,6 +121,3 @@ __low_level_init:
 _Stub_exit:   ldx     __saved_sp
 	      tsx
 	      rts
-
-	      .section znear, bss
-__saved_sp:   .space  1
