@@ -1,5 +1,5 @@
 ;;; Startup variant, change attribute value if you make your own
-              .rtmodel cstartup,"tinycore"
+              .rtmodel cstartup,"microkernel"
 
               .rtmodel version, "1"
 
@@ -13,7 +13,7 @@
               .extern main, exit, event, __saved_sp
               .extern _Zp, _Vsp, _Vfp
 
-	      ;; TinyCore argument area
+	      ;; MicroKernel argument area
 args:	      .equ    0xf0
 
 ;;; ***************************************************************************
@@ -83,7 +83,7 @@ __call_heap_initialize:
               jsr     __heap_initialize
 
               .section code, root, noreorder
-	      lda     #.byte0 event ; set up event buffer for TinyCore
+	      lda     #.byte0 event ; set up event buffer for MicroKernel
 	      sta     zp:args
 
 #ifdef __CALYPSI_CORE_65C02__

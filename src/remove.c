@@ -1,7 +1,7 @@
 #include <string.h>
 #include <calypsi/stubs.h>
 #include "calypsi/intrinsics6502.h"
-#include <tinycore/api.h>
+#include <microkernel/api.h>
 
 int _Stub_remove(const char *path) {
   char drive, stream;
@@ -11,13 +11,13 @@ int _Stub_remove(const char *path) {
   args.common.buf = path;
   args.common.buflen = strlen(path);
 
-  if (__tinycore_call_failed(_TinyCoreCall(File.Delete))) {
+  if (__kernel_call_failed(_MicroKernelCall(File.Delete))) {
     return -1;
   }
 
   while (1) {
     event.type = 0;
-    _TinyCoreCall(NextEvent)();
+    _MicroKernelCall(NextEvent)();
     if (event.type == EVENT(file.DELETED)) {
       break;
     }

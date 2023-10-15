@@ -1,4 +1,4 @@
-#include <tinycore/api.h>
+#include <microkernel/api.h>
 #include "calypsi/intrinsics6502.h"
 #include <calypsi/stubs.h>
 #include <errno.h>
@@ -73,7 +73,7 @@ size_t _Stub_write(int fd, const void *buf, size_t count) {
   size_t total = 0;
   while (count) {
     size_t n = count > 254 ? 254 : count;
-    if (__tinycore_call_failed(_TinyCoreCall(File.Write)())) {
+    if (__kernel_call_failed(_MicroKernelCall(File.Write)())) {
       // Failure means either out of event descriptors or bad
       // descriptor. Take a guess it is a bad descriptor.
       __set_errno(ENXIO);
@@ -82,7 +82,7 @@ size_t _Stub_write(int fd, const void *buf, size_t count) {
 
     while (1) {
       event.type = 0;
-      _TinyCoreCall(NextEvent)();
+      _MicroKernelCall(NextEvent)();
       if (event.type == EVENT(file.WROTE)) {
         size_t delivered = event.file.wrote.delivered;
         total += delivered;

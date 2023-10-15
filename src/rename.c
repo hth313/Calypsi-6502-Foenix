@@ -2,7 +2,7 @@
 #include <string.h>
 #include "calypsi/intrinsics6502.h"
 #include <calypsi/stubs.h>
-#include <tinycore/api.h>
+#include <microkernel/api.h>
 
 static bool
 find_name(const char *name, int *offset) {
@@ -46,13 +46,13 @@ int _Stub_rename(const char *name, const char *to) {
   args.common.buflen = strlen(name);
   args.common.ext = to;
   args.common.extlen = strlen(to);
-  if (__tinycore_call_failed(_TinyCoreCall(File.Rename))) {
+  if (__kernel_call_failed(_MicroKernelCall(File.Rename))) {
     return -1;
   }
 
   while (1) {
     event.type = 0;
-    _TinyCoreCall(NextEvent)();
+    _MicroKernelCall(NextEvent)();
     if (event.type == EVENT(file.RENAMED)) {
       break;
     }

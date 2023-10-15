@@ -408,8 +408,8 @@ struct event_t {
 #define EVENT(member)  (size_t) (&((struct events*) 0)->member)
 extern __zpage struct event_t event;
 
-typedef _Bool (*_TinyCoreCallType)(void);
-#define _TinyCoreCall(entry) ((_TinyCoreCallType) (&((struct call*) 0xff00)->entry))
+typedef _Bool (*_MicroKernelCallType)(void);
+#define _MicroKernelCall(entry) ((_MicroKernelCallType) (&((struct call*) 0xff00)->entry))
 
 const char *__path_without_drive(const char *path, char *drive);
 

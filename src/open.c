@@ -1,4 +1,4 @@
-#include <tinycore/api.h>
+#include <microkernel/api.h>
 #include <stdbool.h>
 #include <string.h>
 #include <calypsi/stubs.h>
@@ -20,13 +20,13 @@ _Stub_open(const char *fname, int mode, ...) {
     mode = 1;
   }
   args.file.open.mode = mode;
-  if (__tinycore_call_failed(_TinyCoreCall(File.Open)())) {
+  if (__kernel_call_failed(_MicroKernelCall(File.Open)())) {
     return -1;
   }
 
   for(;;) {
     event.type = 0;
-    _TinyCoreCall(NextEvent)();
+    _MicroKernelCall(NextEvent)();
     if (event.type == EVENT(file.OPENED)) {
       return ret;
     }
